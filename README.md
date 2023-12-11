@@ -1,6 +1,3 @@
-# operator-example
-一个operator 例子
-
 ## Description
 一个operator 例子
 
@@ -15,9 +12,9 @@
     --version v1 \
     --kind ElasticWeb
 4. 调整elasticweb struct
-5. 部署crd 到kubernetes
+5. 部署crd 到kubernetes:
         make install
-    查看crd 是否创建
+    查看crd 是否创建:
         kubectl get crd -A|grep elasticweb
 6. 业务核心逻辑
     ![Alt text](image.png)

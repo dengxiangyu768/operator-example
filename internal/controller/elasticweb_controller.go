@@ -273,7 +273,7 @@ func createServiceIfNotExists(ctx context.Context, r *ElasticWebReconciler, elas
 
 // 新建deployment
 func createDeployment(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb) error {
-	log := r.Log.WithValues("func", "createDeployment")
+	log := ctrl.Log.WithValues("func", "createDeployment")
 
 	// 计算期望的pod数量
 	expectReplicas := getExpectReplicas(elasticWeb)
@@ -354,7 +354,7 @@ func createDeployment(ctx context.Context, r *ElasticWebReconciler, elasticWeb *
 
 // 完成了pod的处理后，更新最新状态
 func updateStatus(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb) error {
-	log := r.Log.WithValues("func", "updateStatus")
+	log := ctrl.Log.WithValues("func", "updateStatus")
 
 	// 单个pod的QPS
 	singlePodQPS := *(elasticWeb.Spec.SinglePodQPS)

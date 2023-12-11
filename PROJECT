@@ -2,7 +2,7 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
-domain: com.operator-example
+domain: com.bolingcavalry
 layout:
 - go.kubebuilder.io/v4
 projectName: operator-example
@@ -12,7 +12,7 @@ resources:
     crdVersion: v1
     namespaced: true
   controller: true
-  domain: com.operator-example
+  domain: com.bolingcavalry
   group: elasticweb
   kind: ElasticWeb
   path: elasticweb/api/v1

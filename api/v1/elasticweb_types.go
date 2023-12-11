@@ -23,15 +23,26 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	// deployment中的APP标签名
+	APP_NAME = "elastic-app"
+	// tomcat容器的端口号
+	CONTAINER_PORT = 8080
+	// 单个POD的CPU资源申请
+	CPU_REQUEST = "100m"
+	// 单个POD的CPU资源上限
+	CPU_LIMIT = "100m"
+	// 单个POD的内存资源申请
+	MEM_REQUEST = "512Mi"
+	// 单个POD的内存资源上限
+	MEM_LIMIT = "512Mi"
+)
+
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // ElasticWebSpec defines the desired state of ElasticWeb
 type ElasticWebSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of ElasticWeb. Edit elasticweb_types.go to remove/updat
 	Image string `json:"image"`
 	// service占用的宿主机端口，外部请求通过此端口访问pod的服务
 	Port *int32 `json:"port"`
@@ -44,8 +55,6 @@ type ElasticWebSpec struct {
 
 // ElasticWebStatus defines the observed state of ElasticWeb
 type ElasticWebStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
 	RealQPS *int32 `json:"realQPS"`
 }
 
@@ -59,15 +68,6 @@ type ElasticWeb struct {
 
 	Spec   ElasticWebSpec   `json:"spec,omitempty"`
 	Status ElasticWebStatus `json:"status,omitempty"`
-}
-
-//+kubebuilder:object:root=true
-
-// ElasticWebList contains a list of ElasticWeb
-type ElasticWebList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ElasticWeb `json:"items"`
 }
 
 func (in *ElasticWeb) String() string {
@@ -85,6 +85,15 @@ func (in *ElasticWeb) String() string {
 		*(in.Spec.SinglePodQPS),
 		*(in.Spec.TotalQPS),
 		realQPS)
+}
+
+//+kubebuilder:object:root=true
+
+// ElasticWebList contains a list of ElasticWeb
+type ElasticWebList struct {
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+	Items           []ElasticWeb `json:"items"`
 }
 
 func init() {

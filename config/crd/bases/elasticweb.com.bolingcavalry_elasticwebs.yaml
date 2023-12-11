@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: elasticwebs.elasticweb.com.operator-example
+  name: elasticwebs.elasticweb.com.bolingcavalry
 spec:
-  group: elasticweb.com.operator-example
+  group: elasticweb.com.bolingcavalry
   names:
     kind: ElasticWeb
     listKind: ElasticWebList
@@ -35,8 +35,6 @@ spec:
             description: ElasticWebSpec defines the desired state of ElasticWeb
             properties:
               image:
-                description: Foo is an example field of ElasticWeb. Edit elasticweb_types.go
-                  to remove/updat
                 type: string
               port:
                 description: service占用的宿主机端口，外部请求通过此端口访问pod的服务
@@ -60,9 +58,6 @@ spec:
             description: ElasticWebStatus defines the observed state of ElasticWeb
             properties:
               realQPS:
-                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
-                  of cluster Important: Run "make" to regenerate code after modifying
-                  this file'
                 format: int32
                 type: integer
             required:

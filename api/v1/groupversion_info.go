@@ -16,7 +16,7 @@ limitations under the License.
 
 // Package v1 contains API Schema definitions for the elasticweb v1 API group
 // +kubebuilder:object:generate=true
-// +groupName=elasticweb.com.operator-example
+// +groupName=elasticweb.com.bolingcavalry
 package v1
 
 import (
@@ -26,7 +26,7 @@ import (
 
 var (
 	// GroupVersion is group version used to register these objects
-	GroupVersion = schema.GroupVersion{Group: "elasticweb.com.operator-example", Version: "v1"}
+	GroupVersion = schema.GroupVersion{Group: "elasticweb.com.bolingcavalry", Version: "v1"}
 
 	// SchemeBuilder is used to add go types to the GroupVersionKind scheme
 	SchemeBuilder = &scheme.Builder{GroupVersion: GroupVersion}

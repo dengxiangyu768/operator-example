@@ -32,7 +32,6 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
-	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
 	elasticwebv1 "elasticweb/api/v1"
@@ -74,12 +73,10 @@ type ElasticWebReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.16.3/pkg/reconcile
 func (r *ElasticWebReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	// _ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
-	log := r.Log.WithValues("elasticweb", req.NamespacedName)
-	log.Info("1. start reconcile logic")
-
+	log := ctrl.Log.WithValues("elasticweb", req.NamespacedName)
 	// 实例化数据结构
 	instance := &elasticwebv1.ElasticWeb{}
 
@@ -216,7 +213,7 @@ func getExpectReplicas(elasticWeb *elasticwebv1.ElasticWeb) int32 {
 
 // 新建service
 func createServiceIfNotExists(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb, req ctrl.Request) error {
-	log := r.Log.WithValues("func", "createService")
+	log := ctrl.Log.WithValues("func", "createService")
 
 	service := &corev1.Service{}
 

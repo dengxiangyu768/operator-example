@@ -41,6 +41,7 @@ totalQPS：当前整个业务的总QPS
     修改internal/elasticweb_controller.go 按照业务逻辑实现核心逻辑
 
 7. 在本机调试operator
+    make run
 
 8. 制作镜像，部署operator
 

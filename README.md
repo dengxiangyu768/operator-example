@@ -11,7 +11,7 @@ port：service占用的宿主机端口，外部请求通过此端口访问pod的
 singlePodQPS：单个pod的QPS上限
 totalQPS：当前整个业务的总QPS
 
-## 业务核心逻辑
+## 核心逻辑
 
 ![Alt text](image-1.png)
 
@@ -19,24 +19,28 @@ totalQPS：当前整个业务的总QPS
 ## 快速开始 
 1. 安装kubebuilder 和 golang。kubebuilder 
     参考 https://book.kubebuilder.io/quick-start.html
+
 2. 初始化project：
     mkdir operator-example && cd operator-example && go mod init operator-example
+
 3. 创建api：
     kubebuilder create api \
     --group operator-example \
     --version v1 \
     --kind ElasticWeb
+
 4. 调整elasticweb struct
+    修改api/v1 下的 elasticweb_type_type.go
+
 5. 部署crd 到kubernetes:
         make install
     查看crd 是否创建:
         kubectl get crd -A|grep elasticweb
+
 6. 添加reconcile 逻辑
+    修改internal/elasticweb_controller.go 按照业务逻辑实现核心逻辑
+
 7. 在本机调试operator
+
 8. 制作镜像，部署operator
 
-### Prerequisites
-- go version v1.20.0+
-- docker version 17.03+.
-- kubectl version v1.11.3+.
-- Access to a Kubernetes v1.11.3+ cluster.

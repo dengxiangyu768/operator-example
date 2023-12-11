@@ -1,8 +1,8 @@
 ## 项目描述 
-一个operator 根据qps 调整 webserver 副本的 例子
+一个operator例子, 根据总qps 动态调整 webserver 副本数。
 
 ## 需求
-elasticweb在kubernetes创建pod，至于pod数量是自动算出来的，要确保能满足QPS要求，以前面的情况为例，需要两个pod才能满足800的QPS；
+elasticweb在kubernetes创建pod，至于pod数量是自动算出来的，要确保能满足QPS要求，以800qps的情况为例，如果单个pod 的QPS 上限是500，那么需要两个pod才能满足800的QPS；
 
 
 ## crd 设计

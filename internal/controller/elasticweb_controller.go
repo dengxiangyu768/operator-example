@@ -76,7 +76,8 @@ func (r *ElasticWebReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 	// _ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
-	log := ctrl.Log.WithValues("elasticweb", req.NamespacedName)
+	// log := ctrl.Log.WithValues("elasticweb", req.NamespacedName)
+	log := ctrl.Log.WithName("elasticweb")
 	// 实例化数据结构
 	instance := &elasticwebv1.ElasticWeb{}
 
@@ -213,7 +214,7 @@ func getExpectReplicas(elasticWeb *elasticwebv1.ElasticWeb) int32 {
 
 // 新建service
 func createServiceIfNotExists(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb, req ctrl.Request) error {
-	log := ctrl.Log.WithValues("func", "createService")
+	log := ctrl.Log.WithName("createService")
 
 	service := &corev1.Service{}
 
@@ -273,7 +274,7 @@ func createServiceIfNotExists(ctx context.Context, r *ElasticWebReconciler, elas
 
 // 新建deployment
 func createDeployment(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb) error {
-	log := ctrl.Log.WithValues("func", "createDeployment")
+	log := ctrl.Log.WithName("createDeployment")
 
 	// 计算期望的pod数量
 	expectReplicas := getExpectReplicas(elasticWeb)
@@ -354,7 +355,7 @@ func createDeployment(ctx context.Context, r *ElasticWebReconciler, elasticWeb *
 
 // 完成了pod的处理后，更新最新状态
 func updateStatus(ctx context.Context, r *ElasticWebReconciler, elasticWeb *elasticwebv1.ElasticWeb) error {
-	log := ctrl.Log.WithValues("func", "updateStatus")
+	log := ctrl.Log.WithName("updateStatus")
 
 	// 单个pod的QPS
 	singlePodQPS := *(elasticWeb.Spec.SinglePodQPS)
